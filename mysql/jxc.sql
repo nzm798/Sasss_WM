@@ -1,8 +1,9 @@
 /*
 SQLyog v10.2 
-MySQL - 5.5.27 : Database - jxc
+MySQL - 5.5.27 : Database - sasss_wm
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -12,9 +13,9 @@ MySQL - 5.5.27 : Database - jxc
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`jxc` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`sasss_wm` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `jxc`;
+USE `sasss_wm`;
 
 /*Table structure for table `customer` */
 
