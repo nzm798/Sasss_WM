@@ -1,0 +1,3 @@
+backuppath=D:\\Yun\\MySQL_8.0.31\\bin\\mysqldump -h localhost -uroot -padmin sasss_wm
+restorepath=D:\\Yun\\MySQL_8.0.31\bin\\mysql.exe -hlocalhost -uroot -padmin --default-character-set=utf8 sasss_wm
+logsavepath=D:\\Yun\\JAVA_Projects\\Sasss_WM\\mysql\\logs\\

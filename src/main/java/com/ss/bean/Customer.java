@@ -1,6 +1,7 @@
 package com.ss.bean;
 
-import jakarta.persistence.*;
+
+import javax.persistence.*;
 import lombok.*;
 
 /**
