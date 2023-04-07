@@ -19,5 +19,5 @@ public interface SaleOrderRepository extends JpaRepository<SaleOrder,Long> {
     public void updateFlagByOrderId(String string, Long orderId);
 
     @Query(value = "select sale_order_id from sale_order where DATE_FORMAT(sale_order_sale_date,'%Y-%m-%d') between ?1 and ?2",nativeQuery=true)
-    public List<Long> fingOrderIdByTime(String min, String max);
+    public List<Long> findOrderIdByTime(String min, String max);
 }

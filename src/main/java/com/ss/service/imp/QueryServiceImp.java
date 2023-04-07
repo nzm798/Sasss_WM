@@ -46,7 +46,7 @@ public class QueryServiceImp implements QueryService {
 
     @Override
     public Long findGoodsOrderByTimeAndName(String min, String max, String orderName) throws ServiceException {
-        List<Long> list=saleOrderRepository.fingOrderIdByTime(min,max);
+        List<Long> list=saleOrderRepository.findOrderIdByTime(min,max);
         Long count=0L;
         if (list.size()>0){
             List<BigInteger> countlist=saleItemRepository.findCountByName(orderName,list);
@@ -59,7 +59,7 @@ public class QueryServiceImp implements QueryService {
 
     @Override
     public Map<String, Long> findAllOrderCount(String min, String max) throws ServiceException {
-        List<Long> list=saleOrderRepository.fingOrderIdByTime(min,max);
+        List<Long> list=saleOrderRepository.findOrderIdByTime(min,max);
         List<String> namelist=saleItemRepository.findAllName();
         Map<String,Long> map=new HashMap<>();
         if (list.size()>0){

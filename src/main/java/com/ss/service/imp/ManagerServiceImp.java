@@ -165,7 +165,7 @@ public class ManagerServiceImp implements ManagerService {
         for (PurchaseItem item:purchaseItem){
             Long goodsId= goodsRepository.findGoodsIdByGoodsName(item.getName());
             Long count=stockRepository.findCountByGoodsId(goodsId);
-            stockRepository.updateStockCount(count-item.getCount(),goodsId);
+            stockRepository.updateStockCountByGoodsId(count-item.getCount(),goodsId);
         }
         return 0;
     }
