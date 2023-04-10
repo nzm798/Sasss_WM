@@ -42,7 +42,7 @@
     <div class="clr"></div>
   </div><!--/ Codrops top bar -->
   <header>
-    <h1>进销存管理系统 <span>登录页面</span></h1>
+    <h1>完美祥慧专卖店管理系统 <span>登录页面</span></h1>
   </header>
   <section>
     <div id="container_demo" >
