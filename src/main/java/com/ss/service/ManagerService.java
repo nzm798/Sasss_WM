@@ -26,11 +26,23 @@ public interface ManagerService {
     public int  updateStockByReturnPurchaseItem(List<PurchaseItem> purchaseItem)throws ServiceException;
     public Employee updateEmplyeeByName(Employee employee)throws ServiceException;
     public Managers updateManagersByName(Managers managers)throws ServiceException;
+
+    /**
+     * 获取未读的信息
+     * @return
+     * @throws ServiceException
+     */
     public Long findMessageCount()throws ServiceException;
     public List<Message> findAllMessage()throws ServiceException;
     public Message findMessageById(Long id)throws ServiceException;
     public int updateMessageById(Long id)throws ServiceException;
     public List<Message> findMessageByPage(int i)throws ServiceException;
     public Long getMessageTotalPage()throws ServiceException;
+
+    /**
+     * 获取所有信息
+     * @return
+     * @throws ServiceException
+     */
     public Long findMessageCounts()throws ServiceException;
 }

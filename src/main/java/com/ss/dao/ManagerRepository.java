@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ManagerRepository extends JpaRepository<Managers,Long> {
-    @Query(value = "from Managers where managers_name=?1",nativeQuery = true)
+    @Query(value = "select * from Managers where managers_name=?1",nativeQuery = true)
     public Managers findManagersByName(String name);
 
     @Transactional

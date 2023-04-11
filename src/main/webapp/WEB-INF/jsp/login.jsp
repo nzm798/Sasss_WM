@@ -52,26 +52,26 @@
       <div id="wrapper">
         <div id="login" class="animate form">
           <form  action="/managerlogin" method="post">
-            <h1>Log in</h1>
+            <h1>登录</h1>
             <p>
-              <label for="username" class="uname" data-icon="u" > Your username &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">${msg}</span></label>
+              <label for="username" class="uname" data-icon="u" > 姓名 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">${msg}</span></label>
               <input id="username" name="username" required="required" type="text" />
             </p>
             <p>
-              <label for="password" class="youpasswd" data-icon="p"> Your password </label>
+              <label for="password" class="youpasswd" data-icon="p"> 密码 </label>
               <input id="password" name="password" required="required" type="password"  />
             </p>
             <p class="keeplogin">
               <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
-              Keep me logged in
+              保持登录状态
               <input type="checkbox" name="user" id="loginkeeping" value="manager" />
-              manager
+              管理员
               <input type="checkbox" name="user" id="loginkeeping" value="employee" />
-              employee
+              员工
 
             </p>
             <p class="login button">
-              <input type="submit" value="Login" />
+              <input type="submit" value="Login"/>
               <!-- 	<input type="button" class="login-btn" id="submit" value="Login"/> -->
               <!-- 	<a class="login-btn" id="submit" style="text-decoration: none;">登录</a>  -->
             </p>

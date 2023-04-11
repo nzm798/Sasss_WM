@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PurchaseItemRepository extends JpaRepository<PurchaseItem,Long> {
-    @Query("from PurchaseItem where purchaseOrderId=?1")
+    @Query(value = "from PurchaseItem where purchaseOrderId=?1",nativeQuery = true)
     public List<PurchaseItem> findPurchaseItemByPurchaseId(Long orderId);
 }
