@@ -18,7 +18,7 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
     @Query(value = "select counts from Stock where goods_id=?1", nativeQuery = true)
     public Long findCountByGoodsId(Long goodsId);
 
-    @Query(value = "from Stock where goods_id=?1", nativeQuery = true)
+    @Query(value = "select * from Stock where goods_id=?1", nativeQuery = true)
     public Stock findStockByGoodsId(Long goodsId);
 
     @Transactional

@@ -155,4 +155,13 @@ public class StockServiceImp implements StockService {
         stockRepository.updateStockCount(count,goods.getId());
         return 1;
     }
+
+    @Override
+    public int updateStockCountAfterSale(String name, Long count) throws ServiceException {
+        Goods goods=goodsRepository.findGoodsByName(name);
+        Long counts=stockRepository.findCountByGoodsId(goods.getId());
+        isCount();
+        stockRepository.updateStockCount(counts-count,goods.getId());
+        return 1;
+    }
 }

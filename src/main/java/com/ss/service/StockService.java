@@ -30,4 +30,5 @@ public interface StockService {
     public int stockAdd(Stock stock) throws ServiceException;
 
     public int updateStockCount(String name, Long count) throws ServiceException;
+    public int updateStockCountAfterSale(String name,Long count) throws ServiceException;
 }
