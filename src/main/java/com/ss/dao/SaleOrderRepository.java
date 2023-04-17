@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface SaleOrderRepository extends JpaRepository<SaleOrder,Long> {
-    @Query(value = "select flag from SaleOrder where sale_order_id=?1",nativeQuery = true)
+    @Query(value = "select flag from sale_order where sale_order_id=?1",nativeQuery = true)
     public String findFlagByOrderId(Long orderId);
 
 

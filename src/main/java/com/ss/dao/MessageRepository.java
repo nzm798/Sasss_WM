@@ -12,6 +12,6 @@ public interface MessageRepository extends JpaRepository<Message,Long> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value ="update message set flag='已查看' where id=?1",nativeQuery=true)
+    @Query(value ="update message set flag='已查看' where id=?1",nativeQuery = true)
     public void updateMessageById(Long id);
 }

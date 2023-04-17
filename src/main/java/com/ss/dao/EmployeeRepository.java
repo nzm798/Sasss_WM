@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface EmployeeRepository extends JpaRepository<Employee,Long> {
-    @Query(value = "select * from Employee where employee_name=?1",nativeQuery = true)
+    @Query(value = "select * from employee where employee_name=?1",nativeQuery = true)
     public Employee findEmployeeByName(String name);
 
     @Transactional

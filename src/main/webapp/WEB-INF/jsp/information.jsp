@@ -36,7 +36,7 @@
 			<div class="login-error"></div>
 			<div class="row">
 				<label class="field" for="name">姓名</label>
-				<input type="text" value="${user.name}" class="input-text-user noPic input-click" name="name" id="name">
+				<input type="text" value="${user.name}" class="input-text-user noPic input-click" name="name" id="name" readonly>
 			</div>
 			
 			<div class="row">

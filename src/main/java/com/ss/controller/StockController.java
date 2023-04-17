@@ -135,7 +135,7 @@ public class StockController {
         Long goodsId = Long.parseLong(request.getParameter("goodsId"));
         try {
             Stock stock = stockService.findStockByGoodsId(goodsId);
-            model.addAttribute("stock", stock);
+            model.addAttribute("sock", stock);
             logger.info("库存查询完成");
         } catch (ServiceException e) {
             e.printStackTrace();

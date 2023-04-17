@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
 public interface PurchaseRepository extends JpaRepository<PurchaseOrder,Long> {
-    @Query(value = "select id from PurchaseOrder where inDate=?1",nativeQuery = true)
+    @Query(value = "select purchase_order_id from purchase_order where inDate=?1",nativeQuery = true)
     public Long findPurchaseOrderByTotal(Date indate);
 
-    @Query(value = "select flag from PurchaseOrder where purchase_order_id=?1",nativeQuery = true)
+    @Query(value = "select flag from purchase_order where purchase_order_id=?1",nativeQuery = true)
     public String findFlagByOrderId(Long orderId);
 
     @Transactional

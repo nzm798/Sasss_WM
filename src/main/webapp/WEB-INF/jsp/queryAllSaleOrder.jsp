@@ -161,7 +161,7 @@
 				</form>
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
-				<span class="l">
+				<span class="l"></span>
 				
 			</div>
 			<div class="mt-20">
@@ -195,7 +195,7 @@
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/4.8_cp/WdatePicker.js"></script>
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
