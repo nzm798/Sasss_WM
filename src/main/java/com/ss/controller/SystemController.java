@@ -1,12 +1,14 @@
 package com.ss.controller;
 
-import com.ss.bean.Customer;
-import com.ss.bean.Employee;
-import com.ss.bean.Goods;
-import com.ss.bean.Suppliers;
+import com.ss.bean.*;
+import com.ss.dao.SaleOrderRepository;
 import com.ss.exception.ServiceException;
+import com.ss.service.ManagerService;
+import com.ss.service.SaleService;
 import com.ss.service.SuppliersAndCustomerService;
 import com.ss.service.SystemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/sys")
@@ -33,9 +38,50 @@ public class SystemController {
     private SystemService systemService;
     @Resource
     private SuppliersAndCustomerService suppliersAndCustomerService;
+    @Resource
+    private SaleService saleService;
+    @Resource
+    private ManagerService managerService;
+    @Autowired
+    private Environment environment;
 
     @RequestMapping("/gotoIndex")
-    public String index() {
+    public String index(Model model) {
+        try {
+            Long goodsCount=systemService.findGoodsCount();
+            Long orderCount= saleService.findSaleOrderCount();
+            Long customerCount=suppliersAndCustomerService.findCustomerCount();
+            Long employeeCount=suppliersAndCustomerService.findEmployeeCount();
+            Long messageCount= managerService.findMessageCounts();
+            Long suppliersCount=suppliersAndCustomerService.findSuppliersCount();
+            model.addAttribute("goodsCount",goodsCount);
+            model.addAttribute("orderCount",orderCount);
+            model.addAttribute("customerCount",customerCount);
+            model.addAttribute("employeeCount",employeeCount);
+            model.addAttribute("messagesCount",messageCount);
+            model.addAttribute("suppliersCount",suppliersCount);
+        }catch (ServiceException e){
+            e.printStackTrace();
+        }
+        Map<String,String> map=System.getenv();
+        String userName = map.get("USERNAME"); //  获取用户名
+        String computerName = map.get("COMPUTERNAME"); //  获取计算机名
+        String userDomain = map.get("USERDOMAIN"); //  获取计算机域名
+        String port=environment.getProperty("server.port");
+        String option=System.getProperty("os.name");
+        try {
+            InetAddress address=InetAddress.getLocalHost();
+            String ip=address.getHostAddress();
+            model.addAttribute("ip",ip);
+        }catch (UnknownHostException e){
+            e.printStackTrace();
+        }
+
+        model.addAttribute("userName",userName);
+        model.addAttribute("computerName",computerName);
+        model.addAttribute("userDomain",userDomain);
+        model.addAttribute("port",port);
+        model.addAttribute("option",option);
 
         return "index";
     }

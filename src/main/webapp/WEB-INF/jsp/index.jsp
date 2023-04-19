@@ -149,54 +149,25 @@
 			</tr>
 					<tr class="text-c">
 						<th>统计</th>
-						<th>资讯库</th>
-						<th>图片库</th>
 						<th>产品库</th>
+						<th>订单总数</th>
 						<th>用户</th>
-						<th>管理员</th>
+						<th>员工</th>
+						<th>信息</th>
+						<th>供应商</th>
 			</tr>
 		</thead>
 				<tbody>
 					<tr class="text-c">
 						<td>总数</td>
-						<td>92</td>
-						<td>9</td>
-						<td>0</td>
-						<td>8</td>
-						<td>20</td>
+						<td>${goodsCount}</td>
+						<td>${orderCount}</td>
+						<td>${customerCount}</td>
+						<td>${employeeCount}</td>
+						<td>${messagesCount}</td>
+						<td>${suppliersCount}</td>
 			</tr>
-					<tr class="text-c">
-						<td>今日</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-			</tr>
-					<tr class="text-c">
-						<td>昨日</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-			</tr>
-					<tr class="text-c">
-						<td>本周</td>
-						<td>2</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-			</tr>
-					<tr class="text-c">
-						<td>本月</td>
-						<td>2</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-			</tr>
+
 		</tbody>
 	</table>
 			<table class="table table-border table-bordered table-bg mt-20">
@@ -208,19 +179,23 @@
 				<tbody>
 					<tr>
 						<th width="30%">服务器计算机名</th>
-						<td><span id="lbServerName">http://127.0.0.1/</span></td>
+						<td><span id="lbServerName">${computerName}</span></td>
 			</tr>
 					<tr>
+						<td>用户名</td>
+						<td>${userName}</td>
+					</tr>
+					<tr>
 						<td>服务器IP地址</td>
-						<td>192.168.1.1</td>
+						<td>${ip}</td>
 			</tr>
 					<tr>
 						<td>服务器域名</td>
-						<td>www.h-ui.net</td>
+						<td>${userDomain}</td>
 			</tr>
 					<tr>
 						<td>服务器端口 </td>
-						<td>80</td>
+						<td>${port}</td>
 			</tr>
 					<tr>
 						<td>服务器IIS版本 </td>
@@ -232,7 +207,7 @@
 			</tr>
 					<tr>
 						<td>服务器操作系统 </td>
-						<td>Microsoft Windows NT 5.2.3790 Service Pack 2</td>
+						<td>${option}</td>
 			</tr>
 					<tr>
 						<td>系统所在文件夹 </td>
