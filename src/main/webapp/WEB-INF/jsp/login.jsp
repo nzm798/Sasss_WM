@@ -26,6 +26,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <link rel="stylesheet" type="text/css" href="css/animate-custom.css" />
   <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/togglecheckbox.js"></script>
 </head>
 <body>
 <div class="container">
@@ -64,9 +65,9 @@
             <p class="keeplogin">
               <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
               保持登录状态
-              <input type="checkbox" name="user" id="loginkeeping" value="manager" />
+              <input type="checkbox" name="user" id="loginkeeping" value="manager" onclick="toggleCheckbox(this)" />
               管理员
-              <input type="checkbox" name="user" id="loginkeeping" value="employee" />
+              <input type="checkbox" name="user" id="loginkeeping" value="employee" onclick="toggleCheckbox(this)" />
               员工
 
             </p>
