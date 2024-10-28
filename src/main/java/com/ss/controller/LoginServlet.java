@@ -4,6 +4,7 @@ import com.ss.bean.Employee;
 import com.ss.bean.Managers;
 import com.ss.exception.ServiceException;
 import com.ss.service.ManagerService;
+import com.ss.util.ServerInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @RestController
 @WebServlet(urlPatterns = "/managerlogin")
@@ -31,6 +34,7 @@ public class LoginServlet extends HttpServlet {
         String name = req.getParameter("username");
         String password = req.getParameter("password");
         String user = req.getParameter("user");
+        ServerInfo serverInfo=new ServerInfo();
         if ("manager".equals(user)) {
             Managers manager = null;
             try {
@@ -49,6 +53,7 @@ public class LoginServlet extends HttpServlet {
                 }
                 servletContext.setAttribute("messageCount", count);
                 servletContext.setAttribute("user", manager);
+                servletContext.setAttribute("serverInfo",serverInfo);
                 req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
             } else {
                 logger.info("登录失败，用户名或者密码错误！");

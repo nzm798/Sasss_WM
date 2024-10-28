@@ -35,7 +35,7 @@
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
 					<li>超级管理员</li>
-					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">${user.name} <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<li class="dropDown dropDown_hover"> <a href="javascript:void(0);" class="dropDown_A">${user.name} <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="/log/gotoInformation">个人信息</a></li>
 							<li><a href="log/in">切换账户</a></li>
@@ -179,23 +179,23 @@
 				<tbody>
 					<tr>
 						<th width="30%">服务器计算机名</th>
-						<td><span id="lbServerName">${computerName}</span></td>
+						<td><span id="lbServerName">${serverInfo.computerName}</span></td>
 			</tr>
 					<tr>
 						<td>用户名</td>
-						<td>${userName}</td>
+						<td>${serverInfo.userName}</td>
 					</tr>
 					<tr>
 						<td>服务器IP地址</td>
-						<td>${ip}</td>
+						<td>${serverInfo.ip}</td>
 			</tr>
 					<tr>
 						<td>服务器域名</td>
-						<td>${userDomain}</td>
+						<td>${serverInfo.userDomain}</td>
 			</tr>
 					<tr>
 						<td>服务器端口 </td>
-						<td>${port}</td>
+						<td>${serverInfo.port}</td>
 			</tr>
 					<tr>
 						<td>服务器IIS版本 </td>
