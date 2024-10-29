@@ -203,15 +203,15 @@
 			</tr>
 					<tr>
 						<td>本文件所在文件夹 </td>
-						<td>D:\WebSite\HanXiPuTai.com\XinYiCMS.Web\</td>
+						<td>${serverInfo.fileDirectory}</td>
 			</tr>
 					<tr>
 						<td>服务器操作系统 </td>
-						<td>${option}</td>
+						<td>${serverInfo.option}</td>
 			</tr>
 					<tr>
 						<td>系统所在文件夹 </td>
-						<td>C:\WINDOWS\system32</td>
+						<td>${serverInfo.systemDirectory}</td>
 			</tr>
 					<tr>
 						<td>服务器脚本超时时间 </td>
@@ -219,7 +219,7 @@
 			</tr>
 					<tr>
 						<td>服务器的语言种类 </td>
-						<td>Chinese (People's Republic of China)</td>
+						<td>${serverInfo.language}</td>
 			</tr>
 					<tr>
 						<td>.NET Framework 版本 </td>
@@ -231,7 +231,7 @@
 			</tr>
 					<tr>
 						<td>服务器IE版本 </td>
-						<td>6.0000</td>
+						<td id="ieVersion">检测中...</td>
 			</tr>
 					<tr>
 						<td>服务器上次启动到现在已运行 </td>
@@ -294,7 +294,25 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
+	<!--检测所用的浏览器版本是否为IE-->
+	function getIEVersion() {
+		var userAgent = window.navigator.userAgent;
+		var msie = userAgent.indexOf("MSIE ");
+		if (msie > 0) {
+			return parseFloat(userAgent.substring(msie + 5, userAgent.indexOf(".", msie)));
+		} else if (userAgent.indexOf("Trident/") > 0) { // For IE 11
+			var rv = userAgent.indexOf("rv:");
+			return parseFloat(userAgent.substring(rv + 3, userAgent.indexOf(".", rv)));
+		}
+		return null; // Not IE
+	}
 
+	var ieVersion = getIEVersion();
+	if (ieVersion) {
+		document.getElementById("ieVersion").innerText = ieVersion;
+	} else {
+		document.getElementById("ieVersion").innerText = "非IE浏览器";
+	}
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
 

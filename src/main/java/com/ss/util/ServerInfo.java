@@ -1,19 +1,25 @@
 package com.ss.util;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Properties;
+
 
 public class ServerInfo {
     /**
      * Retrieve server information
      */
-
     private String computerName;
     private String userName;
     private String ip;
     private String userDomain;
-    private int port; // 可以设置为你的应用程序使用的端口
+
+    private String port; // 可以设置为你的应用程序使用的端口
     private String option; // 操作系统信息
     private String fileDirectory; // 本文件所在文件夹
     private String systemDirectory; // 系统所在文件夹
@@ -21,7 +27,6 @@ public class ServerInfo {
     private String language; // 语言种类
     private String frameworkVersion; // .NET Framework 版本
     private Date currentTime; // 当前时间
-    private String ieVersion; // IE版本
     private long uptime; // 上次启动到现在已运行时间（分钟）
     private String logicalDrives; // 逻辑驱动器
     private int cpuCount; // CPU 总数
@@ -39,15 +44,14 @@ public class ServerInfo {
             this.ip = InetAddress.getLocalHost().getHostAddress();
             this.userName = System.getProperty("user.name");
             this.userDomain = System.getProperty("user.dir"); // 仅作为示例
-            this.port = 8080; // 假设端口为8080
+            this.port = setPort();
             this.option = System.getProperty("os.name");
-            this.fileDirectory = "D:\\WebSite\\HanXiPuTai.com\\XinYiCMS.Web\\"; // 具体路径请根据需要调整
+            this.fileDirectory = System.getProperty("user.dir"); // 具体路径请根据需要调整
             this.systemDirectory = System.getenv("SystemRoot") + "\\system32"; // 获取系统目录
             this.scriptTimeout = 30000; // 示例脚本超时时间
-            this.language = "Chinese (People's Republic of China)"; // 示例语言
-            this.frameworkVersion = "2.050727.3655"; // 示例版本
+            this.language = Locale.getDefault().getDisplayLanguage();// 服务器语言
+            this.frameworkVersion = "2.050727.3655"; // .NET Framework版本
             this.currentTime = new Date();
-            this.ieVersion = "6.0000"; // 示例IE版本
             this.uptime = setSystemUptime(); // 获取运行时间
             this.logicalDrives = setLogicalDrives(); // 获取逻辑驱动器
             this.cpuCount = Runtime.getRuntime().availableProcessors(); // 获取CPU总数
@@ -64,6 +68,11 @@ public class ServerInfo {
     }
 
     // setters
+    private String setPort() {
+        ConfigReader configReader = new ConfigReader("src/main/resources/application.properties");
+        return configReader.getProperty("server.port");
+    }
+
     private long setSystemUptime() {
         // TODO: 实现获取系统运行时间的逻辑
         return 7210; // 示例，返回7210分钟
@@ -122,7 +131,7 @@ public class ServerInfo {
         return userDomain;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
@@ -152,10 +161,6 @@ public class ServerInfo {
 
     public Date getCurrentTime() {
         return currentTime;
-    }
-
-    public String getIeVersion() {
-        return ieVersion;
     }
 
     public long getUptime() {
@@ -196,6 +201,22 @@ public class ServerInfo {
 
     public String getCurrentUser() {
         return currentUser;
+    }
+
+    public class ConfigReader {
+        private Properties properties = new Properties();
+
+        public ConfigReader(String filePath) {
+            try (InputStream inputStream = new FileInputStream(filePath)) {
+                properties.load(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public String getProperty(String key) {
+            return properties.getProperty(key);
+        }
     }
 }
 
