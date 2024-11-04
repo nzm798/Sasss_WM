@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 @RestController
 @WebServlet(urlPatterns = "/managerlogin")
@@ -34,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         String name = req.getParameter("username");
         String password = req.getParameter("password");
         String user = req.getParameter("user");
-        ServerInfo serverInfo=new ServerInfo();
+        ServerInfo serverInfo = new ServerInfo();
         if ("manager".equals(user)) {
             Managers manager = null;
             try {
@@ -53,7 +51,8 @@ public class LoginServlet extends HttpServlet {
                 }
                 servletContext.setAttribute("messageCount", count);
                 servletContext.setAttribute("user", manager);
-                servletContext.setAttribute("serverInfo",serverInfo);
+                servletContext.setAttribute("serverInfo", serverInfo);
+                servletContext.setAttribute("httpSession", req.getSession().getId());
                 req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
             } else {
                 logger.info("登录失败，用户名或者密码错误！");
@@ -61,7 +60,7 @@ public class LoginServlet extends HttpServlet {
                 httpSession.setAttribute("msg", "用户名或者密码错误");
                 req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
             }
-        } else if ("employee".equals(user)){
+        } else if ("employee".equals(user)) {
             Employee employee = null;
             try {
                 employee = managerService.employeelogin(name, password);

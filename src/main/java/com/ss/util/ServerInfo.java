@@ -1,8 +1,12 @@
 package com.ss.util;
 
+import com.sun.management.OperatingSystemMXBean;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
@@ -31,8 +35,8 @@ public class ServerInfo {
     private String logicalDrives; // 逻辑驱动器
     private int cpuCount; // CPU 总数
     private String cpuType; // CPU 类型
-    private long virtualMemory; // 虚拟内存
-    private long currentMemoryUsage; // 当前程序占用内存
+    private String virtualMemory; // 虚拟内存
+    private String currentMemoryUsage; // 当前程序占用内存
     private long aspNetMemoryUsage; // Asp.net所占内存
     private int currentSessionCount; // 当前Session数量
     private String currentSessionId; // 当前SessionID
@@ -55,12 +59,11 @@ public class ServerInfo {
             this.uptime = setSystemUptime(); // 获取运行时间
             this.logicalDrives = setLogicalDrives(); // 获取逻辑驱动器
             this.cpuCount = Runtime.getRuntime().availableProcessors(); // 获取CPU总数
-            this.cpuType = getCpuType(); // 自定义方法获取CPU类型
+            this.cpuType = setCpuType(); // 自定义方法获取CPU类型
             this.virtualMemory = setVirtualMemory(); // 自定义方法获取虚拟内存
             this.currentMemoryUsage = setCurrentMemoryUsage(); // 自定义方法获取当前程序占用内存
             this.aspNetMemoryUsage = setAspNetMemoryUsage(); // 自定义方法获取Asp.net所占内存
             this.currentSessionCount = setCurrentSessionCount(); // 自定义方法获取当前Session数量
-            this.currentSessionId = setCurrentSessionId(); // 自定义方法获取当前SessionID
             this.currentUser = System.getProperty("user.name"); // 当前系统用户名
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -79,23 +82,40 @@ public class ServerInfo {
     }
 
     private String setLogicalDrives() {
-        // TODO: 实现获取逻辑驱动器的逻辑
-        return "C:\\D:\\"; // 示例
+        // 使用File.listRoots()方法获取逻辑驱动器
+        File[] drives = File.listRoots();
+
+        StringBuilder logicalDrives = new StringBuilder();
+        for (File drive : drives) {
+            logicalDrives.append(drive.toString()).append(' ');
+        }
+        return logicalDrives.toString();
     }
 
     private String setCpuType() {
-        // TODO: 实现获取CPU类型的逻辑
-        return "x86 Family 6 Model 42 Stepping 1, GenuineIntel"; // 示例
+        return System.getProperty("os.arch");
     }
 
-    private long setVirtualMemory() {
-        // TODO: 实现获取虚拟内存的逻辑
-        return 52480; // 示例，单位MB
+    private String setVirtualMemory() {
+        OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+
+        // 获取系统物理内存和虚拟内存的大小
+        long totalPhysicalMemory = osBean.getTotalPhysicalMemorySize();
+        long freePhysicalMemory = osBean.getFreePhysicalMemorySize();
+        String virtualMemory = String.format("{%d}/{%d}(bytes)", totalPhysicalMemory - freePhysicalMemory, totalPhysicalMemory);
+        return virtualMemory;
     }
 
-    private long setCurrentMemoryUsage() {
-        // TODO: 实现获取当前程序占用内存的逻辑
-        return 3; // 示例，单位MB
+    private String setCurrentMemoryUsage() {
+        // 获取 Java 虚拟机的运行时实例
+        Runtime runtime = Runtime.getRuntime();
+
+        // 获取 JVM 中使用的内存和可用内存
+        long totalMemory = runtime.totalMemory();      // 当前已分配的总内存
+        long freeMemory = runtime.freeMemory();        // 当前空闲的内存
+        long maxMemory = runtime.maxMemory();          // JVM 可以使用的最大内存
+
+        return String.format("空闲：{%d}/已用：{%d}/已分配总：{%d}/JVM最大：{%d} (bytes)", freeMemory, (totalMemory - freeMemory), totalMemory, maxMemory);
     }
 
     private long setAspNetMemoryUsage() {
@@ -106,11 +126,6 @@ public class ServerInfo {
     private int setCurrentSessionCount() {
         // TODO: 实现获取当前Session数量的逻辑
         return 8; // 示例
-    }
-
-    private String setCurrentSessionId() {
-        // TODO: 实现获取当前SessionID的逻辑
-        return "gznhpwmp34004345jz2q3l45"; // 示例
     }
 
 
@@ -179,11 +194,11 @@ public class ServerInfo {
         return cpuType;
     }
 
-    public long getVirtualMemory() {
+    public String getVirtualMemory() {
         return virtualMemory;
     }
 
-    public long getCurrentMemoryUsage() {
+    public String getCurrentMemoryUsage() {
         return currentMemoryUsage;
     }
 
@@ -193,10 +208,6 @@ public class ServerInfo {
 
     public int getCurrentSessionCount() {
         return currentSessionCount;
-    }
-
-    public String getCurrentSessionId() {
-        return currentSessionId;
     }
 
     public String getCurrentUser() {
